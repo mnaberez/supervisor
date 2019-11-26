@@ -213,7 +213,7 @@ class EndToEndTests(BaseTestCase):
         self.addCleanup(supervisord.kill, signal.SIGINT)
         supervisord.expect_exact('success: spew entered RUNNING state')
 
-        cmd = "'%s' -m supervisor.supervisorctl -c '%s' tail -f spew | /bin/cat" % (
+        cmd = "'%s' -m supervisor.supervisorctl -c '%s' tail -f spew | /bin/cat -u" % (
             sys.executable, filename
             )
         bash = pexpect.spawn('/bin/sh', ['-c', cmd], encoding='utf-8')
